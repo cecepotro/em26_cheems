@@ -1,9 +1,15 @@
 package mx.itson.cheems
 
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
 import android.util.Log
 import android.view.View
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -39,8 +45,54 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         Log.d("Valor de la carta perdedora", "La carta perdedora es ${gameOverCard.toString()}")
     }
 
-    override fun onClick(p0: View?) {
-        TODO("Not yet implemented")
+    fun flip(card :Int){
+        if(card == gameOverCard) {
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                // Si la versión del sistema operativo instalado en el teléfono es igual o mayor a Android 12 (API 31)
+                val vibratorAdmin = applicationContext.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+                val vibrator = vibratorAdmin.defaultVibrator
+                vibrator.vibrate(VibrationEffect.createOneShot(1500, VibrationEffect.DEFAULT_AMPLITUDE))
+            } else {
+                val vibrator = applicationContext.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                vibrator.vibrate(1500)
+            }
+            Toast.makeText(this,
+                "¡Perdiste! jaja intenta otra vez",
+                Toast.LENGTH_LONG).show()
+
+            for(i in 1 ..9){
+                val btnCard = findViewById<View>(
+                    resources.getIdentifier("card$i", "id", this.packageName )
+                ) as ImageButton
+
+                if(i ==card) {
+                    btnCard.setBackgroundResource(R.drawable.cheems_bad)
+                } else {
+                    btnCard.setBackgroundResource(R.drawable.cheems_ok)
+                }
+            }
+        } else{
+            val btnCard = findViewById<View>(
+                resources.getIdentifier("card$card", "id", this.packageName )
+            ) as ImageButton
+            btnCard.setBackgroundResource(R.drawable.cheems_ok)
+        }
+    }
+
+    override fun onClick(v: View) {
+        when(v.id) {
+            R.id.card1 -> { flip(1)}
+            R.id.card2 -> { flip(2)}
+            R.id.card3 -> { flip(3)}
+            R.id.card4 -> { flip(4)}
+            R.id.card5 -> { flip(5)}
+            R.id.card6 -> { flip(6)}
+            R.id.card7 -> { flip(7)}
+            R.id.card8 -> { flip(8)}
+            R.id.card9 -> { flip(9)}
+
+        }
     }
 
 
