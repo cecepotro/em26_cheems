@@ -14,6 +14,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import mx.itson.cheems.entities.Winner
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -28,8 +29,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        Winner().save(this, "Pedro Robles Martínez", "pedrin")
+        Winner().getAll(this)
+
         start()
     }
+
     fun start(){
         for (i in 1..9) {
             val btnCard = findViewById<View>(
