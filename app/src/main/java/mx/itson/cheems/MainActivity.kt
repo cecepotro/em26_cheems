@@ -1,6 +1,7 @@
 package mx.itson.cheems
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -8,6 +9,7 @@ import android.os.Vibrator
 import android.os.VibratorManager
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -30,8 +32,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             insets
         }
 
-        Winner().save(this, "Pedro Robles Martínez", "pedrin")
-        Winner().getAll(this)
+        //Winner().save(this, "Pedro Robles Martínez", "pedrin")
+        //Winner().getAll(this)
+
+        val btnNewWinner = findViewById<View>(R.id.btn_new_winner) as Button
+        btnNewWinner.setOnClickListener(this)
 
         start()
     }
@@ -97,7 +102,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.card7 -> { flip(7)}
             R.id.card8 -> { flip(8)}
             R.id.card9 -> { flip(9)}
-
+            R.id.btn_new_winner -> {
+                val intentWinnerForm = Intent(this, WinnerFormActivity::class.java)
+                startActivity(intentWinnerForm)
+            }
         }
     }
 

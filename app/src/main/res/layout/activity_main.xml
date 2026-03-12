@@ -82,5 +82,16 @@
             android:layout_weight="1"/>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btn_new_winner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Regístrate"/>
+
 
 </LinearLayout>
