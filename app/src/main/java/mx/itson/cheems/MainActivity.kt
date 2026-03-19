@@ -38,6 +38,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val btnNewWinner = findViewById<View>(R.id.btn_new_winner) as Button
         btnNewWinner.setOnClickListener(this)
 
+        val btnListWinner = findViewById<View>(R.id.btn_list_winner) as Button
+        btnListWinner.setOnClickListener(this)
+
+
         start()
     }
 
@@ -105,6 +109,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_new_winner -> {
                 val intentWinnerForm = Intent(this, WinnerFormActivity::class.java)
                 startActivity(intentWinnerForm)
+            }
+            R.id.btn_list_winner -> {
+                val intentWinnerList = Intent(this, WinnerListActivity::class.java)
+                startActivity(intentWinnerList)
             }
         }
     }

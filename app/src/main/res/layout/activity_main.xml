@@ -93,5 +93,10 @@
         android:layout_height="wrap_content"
         android:text="Regístrate"/>
 
+    <Button
+        android:id="@+id/btn_list_winner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Consultar ganadores"/>
 
 </LinearLayout>
